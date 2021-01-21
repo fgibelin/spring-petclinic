@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.flags;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Value;
 import javax.annotation.PostConstruct;
 import io.rollout.configuration.RoxContainer;
@@ -9,7 +10,7 @@ import io.rollout.flags.RoxFlag;
 import io.rollout.flags.RoxVariant;
 
 // Create Roxflags in the Flags container class
-@Controller
+@Component
 public class FlagsController implements RoxContainer {
     // Define the feature flags
     public RoxFlag enableTutorial = new RoxFlag(true);
