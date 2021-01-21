@@ -18,12 +18,33 @@ package org.springframework.samples.petclinic.system;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+/* Add CloudBees Feature Flags imports */
+import org.springframework.samples.petclinic.flags.FlagsController;
 
 @Controller
 class WelcomeController {
 
+	private static final Logger logger = LoggerFactory.getLogger(WelcomeController.class);
+
+	// Initialize Flags container class
+	@Autowired
+	private FlagsController flags;
+
 	@GetMapping("/")
 	public String welcome() {
+		// Boolean flag example
+		if (flags.enableTutorial.isEnabled()) {
+			logger.info("Tutorial is ENABLED");
+		} else {
+			logger.info("Tutorial is DISABLED");
+		}
+		String titleColor = flags.titleColors.value();
+		logger.info(String.format("Title color is %s", titleColor));
 		return "welcome";
 	}
 
