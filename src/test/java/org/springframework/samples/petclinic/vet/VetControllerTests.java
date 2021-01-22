@@ -33,6 +33,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.samples.petclinic.flags.FlagsController;
 
 /**
  * Test class for the {@link VetController}
@@ -45,6 +46,9 @@ class VetControllerTests {
 
 	@MockBean
 	private VetRepository vets;
+
+	@MockBean
+	private FlagController flagController;
 
 	@BeforeEach
 	void setup() {
