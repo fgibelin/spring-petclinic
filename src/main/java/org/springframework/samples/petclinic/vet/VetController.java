@@ -15,7 +15,6 @@
  */
 package org.springframework.samples.petclinic.vet;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -63,7 +62,7 @@ class VetController {
 			logger.info("Tutorial is DISABLED");
 		}
 		String titleColor = flags.titleColors.value();
-		logger.info(String.format("Title color is %s", titleColor));
+		logger.info("Title color is {}", titleColor);
 		return "vets/vetList";
 	}
 
