@@ -44,7 +44,7 @@ class WelcomeController {
 			logger.info("Tutorial is DISABLED");
 		}
 		String titleColor = flags.titleColors.value();
-		logger.info(String.format("Title color is %s", titleColor));
+		logger.info("Title color is {}", titleColor);
 		return "welcome";
 	}
 
