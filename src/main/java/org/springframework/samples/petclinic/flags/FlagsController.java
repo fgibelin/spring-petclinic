@@ -1,17 +1,22 @@
 package org.springframework.samples.petclinic.flags;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Value;
 import javax.annotation.PostConstruct;
+
 import io.rollout.configuration.RoxContainer;
 import io.rollout.rox.server.Rox;
 import io.rollout.flags.RoxFlag;
 import io.rollout.flags.RoxVariant;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 // Create Roxflags in the Flags container class
-@Component
+@Controller
 public class FlagsController implements RoxContainer {
+
+    private final Logger logger = LoggerFactory.getLogger(FlagsController.class);
+
     // Define the feature flags
     public RoxFlag enableTutorial = new RoxFlag(true);
     public RoxVariant titleColors = new RoxVariant("White", new String[] { "White", "Blue", "Green" });
@@ -28,7 +33,7 @@ public class FlagsController implements RoxContainer {
             Rox.setup(devEnvKey).get();
 
         } catch (Exception e) {
-            System.err.println(e);
+            logger.error(e.toString());
         }
     }
 }
