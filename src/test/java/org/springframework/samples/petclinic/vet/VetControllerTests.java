@@ -48,7 +48,7 @@ class VetControllerTests {
 	private VetRepository vets;
 
 	@MockBean
-	private FlagController flagController;
+	private FlagsController flagController;
 
 	@BeforeEach
 	void setup() {
