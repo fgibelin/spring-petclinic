@@ -21,8 +21,8 @@ public class FlagsController implements RoxContainer {
     public RoxFlag enableTutorial = new RoxFlag(true);
     public RoxVariant titleColors = new RoxVariant("White", new String[] { "White", "Blue", "Green" });
 
-    @Value("${devEnvKey}")
-    private String devEnvKey;
+    @Value("${ffEnvKey}")
+    private String ffEnvKey;
 
     @PostConstruct
     void postConstruct() {
@@ -30,7 +30,7 @@ public class FlagsController implements RoxContainer {
             // Register the flags container
             Rox.register("", this);
             // Setup the Rollout environment key
-            Rox.setup(devEnvKey).get();
+            Rox.setup(ffEnvKey).get();
 
         } catch (Exception e) {
             logger.error(e.toString());
