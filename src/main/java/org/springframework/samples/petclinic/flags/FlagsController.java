@@ -4,8 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Value;
 import javax.annotation.PostConstruct;
 
+import io.rollout.client.ConfigurationFetchedHandler;
+import io.rollout.client.FetcherResults;
 import io.rollout.configuration.RoxContainer;
 import io.rollout.rox.server.Rox;
+import io.rollout.rox.server.RoxOptions;
 import io.rollout.flags.RoxFlag;
 import io.rollout.flags.RoxVariant;
 import org.slf4j.LoggerFactory;
@@ -27,10 +30,18 @@ public class FlagsController implements RoxContainer {
     @PostConstruct
     void postConstruct() {
         try {
+            RoxOptions options = new RoxOptions.Builder()
+                    .withConfigurationFetchedHandler(new ConfigurationFetchedHandler() {
+                        @Override
+                        public void onConfigurationFetched(FetcherResults results) {
+                            logger.info("Fetched configuration origin: {}", results.getFetcherStatus());
+                            logger.info("Fetched configuration date: {}", results.getCreationDate());
+                        }
+                    }).build();
             // Register the flags container
             Rox.register("", this);
             // Setup the Rollout environment key
-            Rox.setup(ffEnvKey).get();
+            Rox.setup(ffEnvKey, options).get();
 
         } catch (Exception e) {
             logger.error(e.toString());
