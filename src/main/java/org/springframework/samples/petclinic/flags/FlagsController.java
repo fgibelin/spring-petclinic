@@ -23,6 +23,7 @@ public class FlagsController implements RoxContainer {
     // Define the feature flags
     public RoxFlag enableTutorial = new RoxFlag(true);
     public RoxVariant titleColors = new RoxVariant("White", new String[] { "White", "Blue", "Green" });
+    public RoxVariant welcomeImage = new RoxVariant("Pets", new String[] { "Koala" });
 
     @Value("${ffEnvKey}")
     private String ffEnvKey;

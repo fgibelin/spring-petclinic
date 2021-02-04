@@ -43,9 +43,15 @@ class WelcomeController {
 		} else {
 			logger.info("Tutorial is DISABLED");
 		}
-		String titleColor = flags.titleColors.value();
-		logger.info("Title color is {}", titleColor);
-		return "welcome";
+
+		// Get the welcome image value and display it
+		String welcomeImage = flags.welcomeImage.value();
+		logger.info("Title color is {}", welcomeImage);
+		if (welcomeImage.equals("Koala")) {
+			return "welcome_koala";
+		} else {
+			return "welcome";
+		}
 	}
 
 }
