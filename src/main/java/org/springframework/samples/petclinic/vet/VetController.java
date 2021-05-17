@@ -61,7 +61,7 @@ class VetController {
 		} else {
 			logger.info("Tutorial is DISABLED");
 		}
-		String titleColor = flags.titleColors.value();
+		String titleColor = flags.titleColors.getValue();
 		logger.info("Title color is {}", titleColor);
 		return "vets/vetList";
 	}

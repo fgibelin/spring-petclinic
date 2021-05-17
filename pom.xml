@@ -119,6 +119,14 @@
       <artifactId>spring-boot-devtools</artifactId>
       <optional>true</optional>
     </dependency>
+
+    <!-- CloudBees Feature Management -->
+    <dependency>
+      <groupId>io.rollout.rox</groupId>
+      <artifactId>rox-java-server</artifactId>
+      <version>5.0.1</version>
+  </dependency>
+
   </dependencies>
 
   <build>

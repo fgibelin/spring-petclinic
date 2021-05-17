@@ -45,7 +45,7 @@ class WelcomeController {
 		}
 
 		// Get the welcome image value and display it
-		String welcomeImage = flags.welcomeImage.value();
+		String welcomeImage = flags.welcomeImage.getValue();
 		logger.info("Flag welcomeImage is {}", welcomeImage);
 		if (welcomeImage.equals("Koala")) {
 			logger.info("Let's display Koala");

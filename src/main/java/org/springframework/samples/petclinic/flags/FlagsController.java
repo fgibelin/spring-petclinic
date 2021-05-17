@@ -10,7 +10,7 @@ import io.rollout.configuration.RoxContainer;
 import io.rollout.rox.server.Rox;
 import io.rollout.rox.server.RoxOptions;
 import io.rollout.flags.RoxFlag;
-import io.rollout.flags.RoxVariant;
+import io.rollout.flags.RoxString;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
@@ -22,8 +22,8 @@ public class FlagsController implements RoxContainer {
 
     // Define the feature flags
     public RoxFlag enableTutorial = new RoxFlag(true);
-    public RoxVariant titleColors = new RoxVariant("White", new String[] { "White", "Blue", "Green" });
-    public RoxVariant welcomeImage = new RoxVariant("Pets", new String[] { "Koala" });
+    public RoxString titleColors = new RoxString("White", new String[] { "White", "Blue", "Green" });
+    public RoxString welcomeImage = new RoxString("Pets", new String[] { "Koala" });
 
     @Value("${ffEnvKey}")
     private String ffEnvKey;

@@ -35,7 +35,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.samples.petclinic.flags.FlagsController;
 import io.rollout.flags.RoxFlag;
-import io.rollout.flags.RoxVariant;
+import io.rollout.flags.RoxString;
 
 /**
  * Test class for the {@link VetController}
@@ -73,7 +73,7 @@ class VetControllerTests {
 	void testShowVetListHtml() throws Exception {
 		// Provide mock values for feature flags
 		flags.enableTutorial = new RoxFlag(true);
-		flags.titleColors = new RoxVariant("White");
+		flags.titleColors = new RoxString("White");
 		// Run test
 		mockMvc.perform(get("/vets.html")).andExpect(status().isOk()).andExpect(model().attributeExists("vets"))
 				.andExpect(view().name("vets/vetList"));
