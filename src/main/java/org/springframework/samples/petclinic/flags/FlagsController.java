@@ -1,7 +1,9 @@
 package org.springframework.samples.petclinic.flags;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Value;
 import javax.annotation.PostConstruct;
+
 import io.rollout.client.ConfigurationFetchedHandler;
 import io.rollout.client.FetcherResults;
 import io.rollout.configuration.RoxContainer;
@@ -11,16 +13,23 @@ import io.rollout.flags.RoxFlag;
 import io.rollout.flags.RoxString;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+
 // Create Roxflags in the Flags container class
 @Controller
 public class FlagsController implements RoxContainer {
+
         private final Logger logger = LoggerFactory.getLogger(FlagsController.class);
+
         // Define the feature flags
         public RoxFlag enableTutorial = new RoxFlag(true);
+
         public RoxString titleColors = new RoxString("White", new String[] { "White", "Blue", "Green" });
+
         public RoxString welcomeImage = new RoxString("Pets", new String[] { "Koala" });
+
         @Value("${ffEnvKey}")
         private String ffEnvKey;
+
         @PostConstruct
         void postConstruct() {
                 try {
@@ -36,9 +45,11 @@ public class FlagsController implements RoxContainer {
                         Rox.register("", this);
                         // Setup the Rollout environment key
                         Rox.setup(ffEnvKey, options).get();
+
                 }
                 catch (Exception e) {
                         logger.error(e.toString());
                 }
         }
+
 }
