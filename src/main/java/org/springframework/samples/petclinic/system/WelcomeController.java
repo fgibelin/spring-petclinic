@@ -29,31 +29,33 @@ import org.springframework.samples.petclinic.flags.FlagsController;
 @Controller
 class WelcomeController {
 
-	private static final Logger logger = LoggerFactory.getLogger(WelcomeController.class);
+        private static final Logger logger = LoggerFactory.getLogger(WelcomeController.class);
 
-	// Initialize Flags container class
-	@Autowired
-	private FlagsController flags;
+        // Initialize Flags container class
+        @Autowired
+        private FlagsController flags;
 
-	@GetMapping("/")
-	public String welcome() {
-		// Boolean flag example
-		if (flags.enableTutorial.isEnabled()) {
-			logger.info("Tutorial is ENABLED");
-		} else {
-			logger.info("Tutorial is DISABLED");
-		}
+        @GetMapping("/")
+        public String welcome() {
+                // Boolean flag example
+                if (flags.enableTutorial.isEnabled()) {
+                        logger.info("Tutorial is ENABLED");
+                }
+                else {
+                        logger.info("Tutorial is DISABLED");
+                }
 
-		// Get the welcome image value and display it
-		String welcomeImage = flags.welcomeImage.getValue();
-		logger.info("Flag welcomeImage is {}", welcomeImage);
-		if (welcomeImage.equals("Koala")) {
-			logger.info("Let's display Koala");
-			return "welcome_koala";
-		} else {
-			logger.info("Let's display default");
-			return "welcome";
-		}
-	}
+                // Get the welcome image value and display it
+                String welcomeImage = flags.welcomeImage.getValue();
+                logger.info("Flag welcomeImage is {}", welcomeImage);
+                if (welcomeImage.equals("Koala")) {
+                        logger.info("Let's display Koala");
+                        return "welcome_koala";
+                }
+                else {
+                        logger.info("Let's display default");
+                        return "welcome";
+                }
+        }
 
 }
