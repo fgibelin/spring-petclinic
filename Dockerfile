@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-alpine3.13
+FROM openjdk:17-jdk-alpine
 
 ARG ARTIFACTNAME
 RUN test -n "${ARTIFACTNAME}" || ( echo "Missing argument: --build-arg ARTIFACTNAME=<artifact>" && false )
