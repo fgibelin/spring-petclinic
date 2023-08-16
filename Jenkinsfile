@@ -43,7 +43,7 @@ pipeline {
                         rtMavenRun (
                             useWrapper: true,
                             pom: 'pom.xml',
-                            goals: 'verify',
+                            goals: 'deploy',
                             resolverId: 'maven-resolver',
                             deployerId: 'maven-deployer',
                             buildName: '${env.JOB_NAME}',
