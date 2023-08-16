@@ -21,9 +21,14 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 script {
-                    echo "Building Docker image for spring-petclinic with version ${env.petclinicVersion}"
-                    echo "command: docker build -t spring-petclinic:${env.petclinicVersion} . --build-arg target/spring-petclinic-${env.petclinicVersion}"
-                    sh "docker build -t spring-petclinic:${env.petclinicVersion} . --build-arg target/spring-petclinic-${env.petclinicVersion}"
+                    pom = readMavenPom file: "pom.xml";
+                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
+                    artifactPath = filesByGlob[0].path;
+                    artifactExists = fileExists artifactPath;
+                    if (artifactExists) {
+                        echo "Building Docker image for spring-petclinic with version ${env.petclinicVersion}"
+                        sh "docker build -t spring-petclinic:${env.petclinicVersion} . --build-arg target/spring-petclinic-${env.petclinicVersion}"
+                    }
                 }
             }
         }
