@@ -103,7 +103,7 @@ This registry is insecured, so please add:
 in your /etc/docker/daemon.json, and restart your docker daemon.
 
 
-You can pull it using:
+You can then pull the image using:
 ```
 docker pull 35.195.23.92:8082/docker-local/spring-petclinic:3.1.0-SNAPSHOT
 docker tag 35.195.23.92:8082/docker-local/spring-petclinic:3.1.0-SNAPSHOT spring-petclinic:3.1.0-SNAPSHOT
