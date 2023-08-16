@@ -14,7 +14,7 @@ pipeline {
                 withMaven(
                           options: [junitPublisher(disabled: true, healthScaleFactor: 1.0)],
                           publisherStrategy: 'EXPLICIT') {
-                              sh 'mvn clean verify -Dtest="*,!MySql*,!Postgres*"'
+                              sh 'mvn clean verify'
                           }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
                     artifactExists = fileExists artifactPath;
                     if (artifactExists) {
                         echo "Building Docker image for spring-petclinic with version ${pom.version}"
-                        sh "docker build -t spring-petclinic:${pom.version} --build-arg petclinicArtifact=./target/spring-petclinic-${pom.version}.${pom.packaging} ."
+                        sh "docker build -t spring-petclinic:${pom.version} --build-arg petclinicArtifact=./target/${pom.artifactId}-${pom.version}.${pom.packaging} ."
                     }
                 }
             }
@@ -37,6 +37,7 @@ pipeline {
     post {
         always {
             junit 'target/surefire-reports/**/*.xml'
+            cleanWs
         }
     }
 }
