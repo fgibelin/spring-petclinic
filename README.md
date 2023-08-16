@@ -21,13 +21,15 @@ Create a simple pipeline, with:
 - Branch to build: `*/main`
 
 The first stage of the pipeline will clone the repository, then use Maven to compile, run the unit tests, and build the jar file in `target/ folder.
-The command used is mvn verify (recap on [Maven Lifecycle](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#a-build-lifecycle-is-made-up-of-phases))
+
+The command used is `mvn clean verify` (recap on [Maven Lifecycle](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#a-build-lifecycle-is-made-up-of-phases))
 
 If you wish to use Artifactory plugin instead, you can replace the first stage with the following block (please replace <artifactory-server-id> with the ID you have set in the Manage Jenkins -> System -> Artifactory).
+
 You will need the following Maven repositories setup in that example:
 - `maven-local-releases` (local)
 - `maven-local-snapshots` (local)
-- `maven` (virtual), which will include Maven Central repo and the local repositories
+- `maven` (virtual), which will include [Maven Central repo](https://repo1.maven.org/maven2/), [Spring Milestone repo](https://repo.spring.io/milestone), and the local repositories
 ```
         stage('Build and deploy to Artifactory') {
             steps {
@@ -68,14 +70,21 @@ You will need the following Maven repositories setup in that example:
         }
 ```
 
-The second stage will build the Docker image from the Dockerfile with the built jar file.
+The second stage will build the Docker image from the Dockerfile with the built jar file, using:
+```
+docker build -t spring-petclinic:<tag> --build-arg petclinicArtifacto=<path to spring petclinic jar file> .
+```
+
 
 # Run Docker image
+You can run the built Docker image using the following command:
 ```
 docker run -p 8080:8080 -d --name spring-petclinic spring-petclinic:3.1.0-SNAPSHOT
 ```
 Or replace the tag `3.1.0-SNAPSHOT` with the version from the application you built.
+This will run the container in a detached mode, exposing port 8080
 You can then access Petclinic application on `http://localhost:8080`
+You can follow the logs using `docker logs spring-petclinic -f`
 
 # Stop application
 ```
