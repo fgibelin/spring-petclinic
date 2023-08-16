@@ -30,13 +30,13 @@ pipeline {
                         env.petclinicVersion = pom.version
                         rtMavenResolver (
                             id: 'maven-resolver',
-                            serverId: '<artifactory-server-id>',
+                            serverId: 'Artifactory-fgibelin',
                             releaseRepo: 'maven',
                             snapshotRepo: 'maven',
                         )
                         rtMavenDeployer (
                             id: 'maven-deployer',
-                            serverId: '<artifactory-server-id>',
+                            serverId: 'Artifactory-fgibelin',
                             releaseRepo: 'maven-local-releases',
                             snapshotRepo: 'maven-local-snapshots',
                         )
