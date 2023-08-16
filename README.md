@@ -6,7 +6,7 @@
 - Git plugin
 - Pipeline Maven Integration plugin
 - JUnit plugin
-3. An agent/node with the following tools installed
+3. An agent/node with the following tools installed (agent label: `maven-agent`)
   - JDK 17
   - Maven
   - Docker
