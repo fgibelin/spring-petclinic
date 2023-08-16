@@ -1,2 +1,0 @@
-# Spring PetClinic Sample Application
-
