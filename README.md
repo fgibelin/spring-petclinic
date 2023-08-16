@@ -94,6 +94,14 @@ docker rm spring-petclinic
 
 # Pull application from a public registry
 The built Docker image is available in a public JFrog Container Registry.
+This registry is insecured, so please add:
+```
+{
+  "insecure-registries" : ["35.195.23.92:8082"]
+}
+```
+in your /etc/docker/daemon.json, and restart your docker daemon.
+
 
 You can pull it using:
 ```
