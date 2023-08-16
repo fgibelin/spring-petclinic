@@ -26,8 +26,8 @@ pipeline {
                     artifactPath = filesByGlob[0].path;
                     artifactExists = fileExists artifactPath;
                     if (artifactExists) {
-                        echo "Building Docker image for spring-petclinic with version ${env.petclinicVersion}"
-                        sh "docker build -t spring-petclinic:${env.petclinicVersion} . --build-arg target/spring-petclinic-${env.petclinicVersion}"
+                        echo "Building Docker image for spring-petclinic with version ${pom.version}"
+                        sh "docker build -t spring-petclinic:${pom.version} . --build-arg target/spring-petclinic-${pom.version}"
                     }
                 }
             }
