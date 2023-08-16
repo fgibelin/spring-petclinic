@@ -93,7 +93,7 @@ docker rm spring-petclinic
 ```
 
 # Pull application from a public registry
-The built Docker image is available in a public [JFrog Container Registry](http://35.195.23.92:8082/ui/repos/tree/General/docker-local/spring-petclinic).
+The built Docker image is available in a public JFrog Container Registry.
 
 You can pull it using:
 ```
