@@ -8,51 +8,14 @@ pipeline {
     agent { label 'maven-agent' }
 
     stages {
-//        stage('Run maven') {
-//            steps {
-//                git(url:'https://github.com/fgibelin/spring-petclinic', branch: 'main')
-//                withMaven(
-//                          options: [junitPublisher(disabled: true, healthScaleFactor: 1.0)],
-//                          publisherStrategy: 'EXPLICIT') {
-//                              sh 'mvn clean verify'
-//                          }
-//            }
-//        }
-        stage('Build and deploy to Artifactory') {
+        stage('Run maven') {
             steps {
-                script {
-                    git(url:'https://github.com/fgibelin/spring-petclinic', branch: 'main')
-                    pom = readMavenPom file: "pom.xml";
-                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
-                    artifactPath = filesByGlob[0].path;
-                    artifactExists = fileExists artifactPath;
-                    if (artifactExists) {
-                        env.petclinicVersion = pom.version
-                        rtMavenResolver (
-                            id: 'maven-resolver',
-                            serverId: 'Artifactory-fgibelin',
-                            releaseRepo: 'maven',
-                            snapshotRepo: 'maven',
-                        )
-                        rtMavenDeployer (
-                            id: 'maven-deployer',
-                            serverId: 'Artifactory-fgibelin',
-                            releaseRepo: 'maven-local-releases',
-                            snapshotRepo: 'maven-local-snapshots',
-                        )
-                        rtMavenRun (
-                            useWrapper: true,
-                            pom: 'pom.xml',
-                            goals: 'deploy',
-                            resolverId: 'maven-resolver',
-                            deployerId: 'maven-deployer',
-                            buildName: '${env.JOB_NAME}',
-                            buildNumber: '${currentBuild.number}',
-                            deployArtifacts: true,
-                            project: 'spring-petclinic'
-                        )
-                    }
-                }
+                git(url:'https://github.com/fgibelin/spring-petclinic', branch: 'main')
+                withMaven(
+                          options: [junitPublisher(disabled: true, healthScaleFactor: 1.0)],
+                          publisherStrategy: 'EXPLICIT') {
+                              sh 'mvn clean verify'
+                          }
             }
         }
         stage('Build Docker image') {
