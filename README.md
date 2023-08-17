@@ -97,7 +97,7 @@ The built Docker image is available in a public JFrog Container Registry.
 This registry is insecured, so please add:
 ```
 {
-  "insecure-registries" : ["35.195.23.92:8082"]
+  "insecure-registries" : ["35.195.23.92"]
 }
 ```
 in your /etc/docker/daemon.json, and restart your docker daemon.
@@ -105,9 +105,9 @@ in your /etc/docker/daemon.json, and restart your docker daemon.
 
 You can then pull the image using:
 ```
-docker pull 35.195.23.92:8082/docker-local/spring-petclinic:3.1.0-SNAPSHOT
-docker tag 35.195.23.92:8082/docker-local/spring-petclinic:3.1.0-SNAPSHOT spring-petclinic:3.1.0-SNAPSHOT
-docker rmi 35.195.23.92:8082/docker-local/spring-petclinic:3.1.0-SNAPSHOT
+docker pull 35.195.23.92/docker-local/spring-petclinic:3.1.0-SNAPSHOT
+docker tag 35.195.23.92/docker-local/spring-petclinic:3.1.0-SNAPSHOT spring-petclinic:3.1.0-SNAPSHOT
+docker rmi 35.195.23.92/docker-local/spring-petclinic:3.1.0-SNAPSHOT
 ```
 Then run it:
 ```
