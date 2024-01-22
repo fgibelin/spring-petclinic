@@ -44,3 +44,15 @@ jobs:
           jf mvn-config --repo-resolve-releases fg-maven --repo-resolve-snapshots fg-maven --repo-deploy-releases fg-maven-local-releases --repo-deploy-snapshots fg-maven-local-snapshots
           jf mvn clean deploy -Dtest=!PostgresIntegrationTests* --project fg
           jf rt build-publish --project fg
+      -
+        name: Docker Setup Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Docker Build and Push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false
+          tags: spring-petclinic:3.1.0-SNAPSHOT
+          build-args: petclinicArtifact=./target/spring-petclinic-3.1.0-SNAPSHOT.jar
