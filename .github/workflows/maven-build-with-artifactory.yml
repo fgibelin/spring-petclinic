@@ -33,17 +33,19 @@ jobs:
           JF_USER: ${{ secrets.JF_USER }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
       -
-        name: Get JFrog CLI version
-        run: jf --version
-      -
-        name: Ping Artifactory
-        run: jf rt ping
-      -
         name: Run Maven build
         run: |
           jf mvn-config --repo-resolve-releases fg-maven --repo-resolve-snapshots fg-maven --repo-deploy-releases fg-maven-local-releases --repo-deploy-snapshots fg-maven-local-snapshots
           jf mvn clean deploy -Dtest=!PostgresIntegrationTests* --project fg
           jf rt build-publish --project fg
+      -
+        name: Publish build information to Artifactory
+        run: |
+          jf rt build-publish --project fg
+      -
+        name: Build Docker image
+        run: |
+          jf docker build -t soleng.jfrog.io/fg-docker/spring-petclinic:3.1.0-SNAPSHOT --build-arg petclinicArtifact=./target/spring-petclinic-3.1.0-SNAPSHOT.jar .
       -
         name: Docker Setup Buildx
         uses: docker/setup-buildx-action@v3
