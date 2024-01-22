@@ -41,6 +41,6 @@ jobs:
       -
         name: Run Maven build
         run: |
-          jf 'mvn-config --server-id-resolve soleng --server-id-deploy soleng --repo-resolve-releases fg-maven --repo-resolve-snapshots fg-maven --repo-deploy-releases fg-maven-local-releases --repo-deploy-snapshots fg-maven-local-snapshots'
-          jf 'mvn clean deploy --project fg'
-          jf 'rt build-publish --server-id soleng --project fg'
+          jf mvn-config --server-id-resolve soleng --server-id-deploy soleng --repo-resolve-releases fg-maven --repo-resolve-snapshots fg-maven --repo-deploy-releases fg-maven-local-releases --repo-deploy-snapshots fg-maven-local-snapshots
+          jf mvn clean deploy --project fg
+          jf rt build-publish --server-id soleng --project fg
