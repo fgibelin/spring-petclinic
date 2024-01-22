@@ -26,6 +26,6 @@ jobs:
           java-version: ${{matrix.java}}
           distribution: 'adopt'
           cache: maven
+      - uses: jfrog/setup-jfrog-cli@v3.5.2
       - name: Setup JFrog CLI
-        uses: jfrog/setup-jfrog-cli@v3.5.2
         run: jf --version
