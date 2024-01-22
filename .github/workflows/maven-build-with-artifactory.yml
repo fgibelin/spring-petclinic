@@ -45,6 +45,7 @@ jobs:
       -
         name: Build Docker image
         run: |
+          jf docker login -u ${{ secrets.JF_USER }} -p ${{ secrets.JF_PASSWORD }} soleng.jfrog.io/fg-docker
           jf docker build -t soleng.jfrog.io/fg-docker/spring-petclinic:3.1.0-SNAPSHOT --build-arg petclinicArtifact=./target/spring-petclinic-3.1.0-SNAPSHOT.jar .
       -
         name: Docker Setup Buildx
