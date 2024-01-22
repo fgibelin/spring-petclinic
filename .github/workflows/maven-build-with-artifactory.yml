@@ -1,6 +1,3 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
 name: Build Spring Petclinic with JFrog Artifactory
 
 on:
@@ -12,20 +9,20 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
         java: [ '17' ]
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK ${{matrix.java}}
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      - 
+        name: Set up JDK ${{matrix.java}}
         uses: actions/setup-java@v2
         with:
           java-version: ${{matrix.java}}
           distribution: 'adopt'
           cache: maven
-      - uses: jfrog/setup-jfrog-cli@v3.5.2
-      - name: Setup JFrog CLI
-        run: jf --version
+
