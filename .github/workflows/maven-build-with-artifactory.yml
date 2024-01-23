@@ -36,7 +36,7 @@ jobs:
         name: Read POM
         run: |
           echo "petclinicVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
-          echo "Version is ${{ env.petclinicVersion }}"
+          echo "Version is $petclinicVersion"
 
       -
         name: Run Maven build
