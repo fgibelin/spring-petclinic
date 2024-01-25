@@ -37,18 +37,18 @@ jobs:
         run: |
           echo "petclinicArtifactName=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
           echo "petclinicVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
-
       -
         name: Run Maven build
         run: |
-          echo "Version is ${{ env.petclinicVersion }}"
           jf mvn-config --repo-resolve-releases fg-maven --repo-resolve-snapshots fg-maven --repo-deploy-releases fg-maven-local-releases --repo-deploy-snapshots fg-maven-local-snapshots
           jf mvn clean deploy -Dtest=!PostgresIntegrationTests* --project fg
+          jf rt build-publish --project fg
       -
         name: Build Docker image
         run: |
           jf docker build -t soleng.jfrog.io/fg-docker/${{ env.petclinicArtifactName }}:${{ env.petclinicVersion }} --build-arg petclinicArtifact=./target/${{ env.petclinicArtifactName }}-${{ env.petclinicVersion }}.jar .
           jf docker push soleng.jfrog.io/fg-docker/${{ env.petclinicArtifactName }}:${{ env.petclinicVersion }}
+          jf rt build-publish --project fg
       -
         name: Publish build information to Artifactory
         run: |
