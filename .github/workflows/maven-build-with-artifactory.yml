@@ -32,6 +32,7 @@ jobs:
           JF_URL: ${{ secrets.JF_URL }}
           JF_USER: ${{ secrets.JF_USER }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+          JFROG_CLI_BUILD_NAME: 'Built with GitHub Actions'
           JFROG_CLI_BUILD_NUMBER: ${{github.run_number}}
       -
         name: Read POM
