@@ -50,8 +50,8 @@ jobs:
       -
         name: Build Docker image
         run: |
-          jf docker build -t soleng.jfrog.io/fg-docker/${{ env.petclinicArtifactName }}:${{ env.petclinicVersion }} --build-arg petclinicArtifact=./target/${{ env.petclinicArtifactName }}-${{ env.petclinicVersion }}.jar .
-          jf docker push soleng.jfrog.io/fg-docker/${{ env.petclinicArtifactName }}:${{ env.petclinicVersion }} --project fg
+          jf docker build -t soleng.jfrog.io/fg-docker/christophl-${{ env.petclinicArtifactName }}:${{ env.petclinicVersion }} --build-arg petclinicArtifact=./target/${{ env.petclinicArtifactName }}-${{ env.petclinicVersion }}.jar .
+          jf docker push soleng.jfrog.io/fg-docker/christophl-${{ env.petclinicArtifactName }}:${{ env.petclinicVersion }} --project fg
       -
         name: Publish build information to Artifactory
         run: |
