@@ -32,8 +32,6 @@ jobs:
           JF_URL: ${{ secrets.JF_URL }}
           JF_USER: ${{ secrets.JF_USER }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
-          JFROG_CLI_BUILD_NAME: 'Built with GitHub Actions'
-          JFROG_CLI_BUILD_NUMBER: ${{github.run_number}}
       -
         name: Read POM
         run: |
@@ -44,6 +42,11 @@ jobs:
         run: |
           jf mvn-config --repo-resolve-releases fg-maven --repo-resolve-snapshots fg-maven --repo-deploy-releases fg-maven-local-releases --repo-deploy-snapshots fg-maven-local-snapshots
           jf mvn clean deploy -Dtest=!PostgresIntegrationTests* --project fg
+      -
+        name: Scan Maven artifact with Xray
+        run: |
+          jf scan --watches fredericg-watch --licenses --format=json ./target/spring-petclinic-3.2.0-SNAPSHOT.jar
+
       -
         name: Build Docker image
         run: |
