@@ -46,7 +46,6 @@ jobs:
         name: Scan Maven artifact with Xray
         run: |
           jf scan --watches fredericg-watch --licenses --format=json ./target/spring-petclinic-3.2.0-SNAPSHOT.jar
-
       -
         name: Build Docker image
         run: |
