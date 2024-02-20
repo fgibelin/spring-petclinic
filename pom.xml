@@ -277,28 +277,6 @@
     </license>
   </licenses>
 
-  <repositories>
-    <repository>
-      <id>fg-maven</id>
-      <name>Spring Milestones</name>
-      <url>https://soleng.jfrog.io/artifactory/fg-maven</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>fg-maven</id>
-      <name>Spring Milestones</name>
-      <url>https://soleng.jfrog.io/artifactory/fg-maven</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
-
   <profiles>
     <profile>
       <id>css</id>
