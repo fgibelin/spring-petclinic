@@ -20,6 +20,8 @@ jobs:
           JF_URL: ${{ secrets.JF_URL }}
           JF_USER: ${{ secrets.JF_USER }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+          JF_PROJECT: "fg"
+          JF_WATCH: "fredericg-watch"
 
           # [Mandatory]
           # The GitHub token is automatically generated for the job
