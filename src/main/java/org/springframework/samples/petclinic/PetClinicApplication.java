@@ -30,9 +30,12 @@ import org.springframework.context.annotation.ImportRuntimeHints;
 @ImportRuntimeHints(PetClinicRuntimeHints.class)
 public class PetClinicApplication {
 
+	/**
+	 * Set fake password for testing scanner
+	 */
+	public static final String myPassword = "SuperPassword1234";
+
 	public static void main(String[] args) {
 		SpringApplication.run(PetClinicApplication.class, args);
 	}
-
-	public static String myPassword = "SuperPassword1234";
 }
