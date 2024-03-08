@@ -52,18 +52,22 @@ jobs:
           jf scan --watches fredericg-watch --licenses --format=json ./target/${{ env.petclinicArtifactName }}-${{ env.petclinicVersion }}.jar
       -
         name: Deploy Maven package to Artifactory
+        if: github.ref == 'refs/heads/main'
         run: |
           jf mvn deploy -Dmaven.main.skip=true -Dmaven.install.skip=true -DskipTests --project fg
       -
         name: Build Docker image
+        if: github.ref == 'refs/heads/main'
         run: |
           jf docker build -t soleng.jfrog.io/fg-docker/${{ env.petclinicArtifactName }}:${{ env.petclinicVersion }} --build-arg petclinicArtifact=./target/${{ env.petclinicArtifactName }}-${{ env.petclinicVersion }}.jar .
           jf docker push soleng.jfrog.io/fg-docker/${{ env.petclinicArtifactName }}:${{ env.petclinicVersion }} --project fg
       -
         name: Scan Docker image
+        if: github.ref == 'refs/heads/main'
         run: |
           jf docker scan soleng.jfrog.io/fg-docker/${{ env.petclinicArtifactName }}:${{ env.petclinicVersion }} --severity='HIGH,CRITICAL'
       -
         name: Publish build info
+        if: github.ref == 'refs/heads/main'
         run: |
           jf rt build-publish --project fg
