@@ -34,4 +34,5 @@ public class PetClinicApplication {
 		SpringApplication.run(PetClinicApplication.class, args);
 	}
 
+	public static String myPassword = "SuperPassword1234";
 }
