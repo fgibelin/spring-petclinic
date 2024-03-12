@@ -27,7 +27,7 @@ jobs:
           cache: maven
       - 
         name: Setup JFrog CLI
-        uses: jfrog/setup-jfrog-cli@v4
+        uses: jfrog/setup-jfrog-cli@v4.0.0
         env:
           JF_URL: ${{ secrets.JF_URL }}
           JF_USER: ${{ secrets.JF_USER }}
@@ -45,7 +45,7 @@ jobs:
         name: Build Maven package
         run: |
           jf mvn-config --repo-resolve-releases fg-maven --repo-resolve-snapshots fg-maven --repo-deploy-releases fg-maven-local-releases --repo-deploy-snapshots fg-maven-local-snapshots
-          jf mvn clean install -Dtest=!PostgresIntegrationTests* -Dspring-javaformat.validate.skip=true --project fg
+          jf mvn clean install -Dtest=!PostgresIntegrationTests* --project fg
       -
         name: Scan Maven package
         run: |
