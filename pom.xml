@@ -113,13 +113,6 @@
       <artifactId>jakarta.xml.bind-api</artifactId>
     </dependency>
 
-    <!-- For Xray -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.1</version>
-    </dependency>
-
     <!-- Scoped to test-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
