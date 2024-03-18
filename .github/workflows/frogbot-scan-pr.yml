@@ -57,6 +57,7 @@ jobs:
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JF_PROJECT: "fg"
           JF_WATCH: "fredericg-watch"
+          JFROG_CLI_LOG_LEVEL: “DEBUG”
           # [Optional]
           # If the machine that runs Frogbot has no access to the internat, set the name of a remote repository
           # in Artifactory, which proxies https://releases.jfrog.io/artifactory
