@@ -30,7 +30,7 @@ import org.springframework.context.annotation.ImportRuntimeHints;
 @ImportRuntimeHints(PetClinicRuntimeHints.class)
 public class PetClinicApplication {
 
-	public static String myPassword = "Password1234";
+	public static String myNewPassword = "Password1234";
 	public static void main(String[] args) {
 		SpringApplication.run(PetClinicApplication.class, args);
 	}
