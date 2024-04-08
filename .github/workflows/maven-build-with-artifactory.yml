@@ -81,12 +81,14 @@ jobs:
         name: Create Release Bundle
         if: github.ref == 'refs/heads/main'
         run: |
+          echo "=== Generating Release Bundle ==="
           echo '
                 {
                   "builds": [
                     {
                       "name": "${{ env.JFROG_CLI_BUILD_NAME }}",
-                      "number": "${{ env.JFROG_CLI_BUILD_NUMBER }}"
+                      "number": "${{ env.JFROG_CLI_BUILD_NUMBER }}",
+                      "project": "${{ env.JFROG_CLI_BUILD_PROJECT }}"
                     }
                   ]
                 }
