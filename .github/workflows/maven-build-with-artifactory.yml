@@ -77,7 +77,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           #jf rt build-publish --project ${{ env.JFROG_CLI_BUILD_PROJECT }} "${{ env.JFROG_CLI_BUILD_NAME }}" "${{ env.JFROG_CLI_BUILD_NUMBER }}"
-          jf rt build-publish --project ${{ env.JFROG_CLI_BUILD_PROJECT }} "${{ env.JFROG_CLI_BUILD_NAME }}" "${{ env.JFROG_CLI_BUILD_NUMBER }}"
+          jf rt build-publish --project ${{ env.JFROG_CLI_BUILD_PROJECT }}
       -
         name: Create Release Bundle
         if: github.ref == 'refs/heads/main'
