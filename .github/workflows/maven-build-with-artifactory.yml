@@ -76,9 +76,9 @@ jobs:
         name: Publish build info
         if: github.ref == 'refs/heads/main'
         run: |
-          jf rt build-publish --project ${{ env.JFROG_CLI_BUILD_PROJECT }} ${{ env.JFROG_CLI_BUILD_NAME }} ${{ env.JFROG_CLI_BUILD_NUMBER }}
+          jf rt build-publish --project ${{ env.JFROG_CLI_BUILD_PROJECT }} "${{ env.JFROG_CLI_BUILD_NAME }}" "${{ env.JFROG_CLI_BUILD_NUMBER }}"
       -
         name: Create Release Bundle
         if: github.ref == 'refs/heads/main'
         run: |
-          jf release-bundle-create --project ${{ env.JFROG_CLI_BUILD_PROJECT }} --signing-key fredericg-gpg ${{ env.petclinicArtifactName }} ${{ env.petclinicVersion }}
+          jf release-bundle-create --project ${{ env.JFROG_CLI_BUILD_PROJECT }} --signing-key fredericg-gpg "${{ env.petclinicArtifactName }}" "${{ env.petclinicVersion }}"
