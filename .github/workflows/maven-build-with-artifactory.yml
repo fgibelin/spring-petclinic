@@ -12,7 +12,7 @@ jobs:
   build:
     name: 'Build Spring Petclinic'
     env:
-      JFROG_CLI_BUILD_NAME: 'fredericg - Petclinic - GitHub Workflow'
+      JFROG_CLI_BUILD_NAME: 'Build Spring Petclinic with JFrog Artifactory'
       JFROG_CLI_BUILD_NUMBER: ${{ github.run_number }}
       JFROG_CLI_BUILD_PROJECT: "fg"
     runs-on: ubuntu-latest
