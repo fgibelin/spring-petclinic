@@ -35,7 +35,7 @@ jobs:
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
           JFROG_CLI_BUILD_NAME: "fredericg - Petclinic - GitHub Workflow"
           JFROG_CLI_BUILD_NUMBER: ${{ github.run_number }}
-          JFROG_CLI_BUILD_PROJECT: fg
+          JFROG_CLI_BUILD_PROJECT: "fg"
       -
         name: Read POM
         run: |
@@ -49,7 +49,7 @@ jobs:
         name: Build Maven package
         run: |
           jf mvn-config --repo-resolve-releases fg-maven --repo-resolve-snapshots fg-maven --repo-deploy-releases fg-maven-local-releases --repo-deploy-snapshots fg-maven-local-snapshots
-          jf mvn clean install -Dtest=!PostgresIntegrationTests* '-Dspring-javaformat.skip=true' --project ${{ JFROG_CLI_BUILD_PROJECT }}
+          jf mvn clean install -Dtest=!PostgresIntegrationTests* '-Dspring-javaformat.skip=true' --project ${{ env.JFROG_CLI_BUILD_PROJECT }}
       -
       -
         name: Scan Maven package
@@ -59,13 +59,13 @@ jobs:
         name: Deploy Maven package to Artifactory
         if: github.ref == 'refs/heads/main'
         run: |
-          jf mvn deploy -Dmaven.main.skip=true -Dmaven.install.skip=true -DskipTests --project ${{ JFROG_CLI_BUILD_PROJECT }}
+          jf mvn deploy -Dmaven.main.skip=true -Dmaven.install.skip=true -DskipTests --project ${{ env.JFROG_CLI_BUILD_PROJECT }}
       -
         name: Build Docker image
         if: github.ref == 'refs/heads/main'
         run: |
           jf docker build -t soleng.jfrog.io/fg-docker/${{ env.petclinicArtifactName }}:${{ env.petclinicVersion }} --build-arg petclinicArtifact=./target/${{ env.petclinicArtifactName }}-${{ env.petclinicVersion }}.jar .
-          jf docker push soleng.jfrog.io/fg-docker/${{ env.petclinicArtifactName }}:${{ env.petclinicVersion }} --project ${{ JFROG_CLI_BUILD_PROJECT }}
+          jf docker push soleng.jfrog.io/fg-docker/${{ env.petclinicArtifactName }}:${{ env.petclinicVersion }} --project ${{ env.JFROG_CLI_BUILD_PROJECT }}
       -
         name: Scan Docker image
         if: github.ref == 'refs/heads/main'
@@ -75,9 +75,9 @@ jobs:
         name: Publish build info
         if: github.ref == 'refs/heads/main'
         run: |
-          jf rt build-publish --project ${{ JFROG_CLI_BUILD_PROJECT }} ${{ JFROG_CLI_BUILD_NAME }} ${{ JFROG_CLI_BUILD_NUMBER }}
+          jf rt build-publish --project ${{ env.JFROG_CLI_BUILD_PROJECT }} ${{ env.JFROG_CLI_BUILD_NAME }} ${{ env.JFROG_CLI_BUILD_NUMBER }}
       -
         name: Create Release Bundle
         if: github.ref == 'refs/heads/main'
         run: |
-          jf release-bundle-create --project ${{ JFROG_CLI_BUILD_PROJECT }} --signing-key fredericg-gpg ${{ env.petclinicArtifactName }} ${{ env.petclinicVersion }}
+          jf release-bundle-create --project ${{ env.JFROG_CLI_BUILD_PROJECT }} --signing-key fredericg-gpg ${{ env.petclinicArtifactName }} ${{ env.petclinicVersion }}
