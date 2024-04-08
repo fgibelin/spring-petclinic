@@ -32,6 +32,7 @@ jobs:
           JF_URL: ${{ secrets.JF_URL }}
           JF_USER: ${{ secrets.JF_USER }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+          JFROG_CLI_BUILD_NAME: "Petclinic from GitHub Actions"
       -
         name: Read POM
         run: |
@@ -75,7 +76,4 @@ jobs:
         name: Create Release Bundle
         if: github.ref == 'refs/heads/main'
         run: |
-          echo "test \ 
-          coucou" > toto.json
-          cat toto.json
           jf release-bundle-create --project fg --signing-key fredericg-gpg ${{ env.petclinicArtifactName }} ${{ env.petclinicVersion }}
