@@ -81,4 +81,16 @@ jobs:
         name: Create Release Bundle
         if: github.ref == 'refs/heads/main'
         run: |
+          echo '
+                {
+                  "builds": [
+                    {
+                      "name": "${{ env.JFROG_CLI_BUILD_NAME }}",
+                      "number": "${{ env.JFROG_CLI_BUILD_NUMBER }}"
+                    }
+                  ]
+                }
+          ' > builds.json
+          echo "YEAH"
+          cat builds.json
           jf release-bundle-create --project ${{ env.JFROG_CLI_BUILD_PROJECT }} --signing-key fredericg-gpg "${{ env.petclinicArtifactName }}" "${{ env.petclinicVersion }}"
