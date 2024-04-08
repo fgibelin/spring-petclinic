@@ -71,3 +71,11 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           jf rt build-publish --project fg
+      -
+        name: Create Release Bundle
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "test \ 
+          coucou" > toto.json
+          cat toto.json
+          jf release-bundle-create --project fg --signing-key fredericg-gpg ${{ env.petclinicArtifactName }} ${{ env.petclinicVersion }}
