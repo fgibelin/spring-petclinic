@@ -49,7 +49,7 @@ jobs:
         name: Build Maven package
         run: |
           jf mvn-config --repo-resolve-releases fg-maven --repo-resolve-snapshots fg-maven --repo-deploy-releases fg-maven-local-releases --repo-deploy-snapshots fg-maven-local-snapshots
-          jf mvn clean install -Dtest=!PostgresIntegrationTests* '-Dspring-javaformat.skip=true' --project ${{ JFROG_CLI_BUILD_PROJECT }}
+          jf mvn clean install -Dtest=!PostgresIntegrationTests* '-Dspring-javaformat.skip=true' --project fg
       -
         name: Scan Maven package
         run: |
