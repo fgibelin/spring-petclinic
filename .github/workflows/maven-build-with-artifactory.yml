@@ -91,6 +91,4 @@ jobs:
                   ]
                 }
           ' > builds.json
-          echo "YEAH"
-          cat builds.json
-          jf release-bundle-create --project ${{ env.JFROG_CLI_BUILD_PROJECT }} --signing-key fredericg-gpg "${{ env.petclinicArtifactName }}" "${{ env.petclinicVersion }}"
+          jf release-bundle-create --builds=./builds.json --project ${{ env.JFROG_CLI_BUILD_PROJECT }} --signing-key fredericg-gpg "${{ env.petclinicArtifactName }}" "${{ env.petclinicVersion }}"
