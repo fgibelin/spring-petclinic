@@ -13,8 +13,7 @@ jobs:
     name: 'Build Spring Petclinic'
     env:
       JFROG_CLI_BUILD_NAME: 'Petclinic from GitHub workflow'
-      #JFROG_CLI_BUILD_NAME: 'test-fg'
-      #JFROG_CLI_BUILD_NUMBER: ${{ github.run_number }}
+      JFROG_CLI_BUILD_NUMBER: ${{ github.run_number }}
       JFROG_CLI_BUILD_PROJECT: "fg"
     runs-on: ubuntu-latest
     strategy:
@@ -77,8 +76,7 @@ jobs:
         name: Publish build info
         if: github.ref == 'refs/heads/main'
         run: |
-          #jf rt build-publish --project ${{ env.JFROG_CLI_BUILD_PROJECT }} "${{ env.JFROG_CLI_BUILD_NAME }}" "${{ env.JFROG_CLI_BUILD_NUMBER }}"
-          jf rt build-publish --project ${{ env.JFROG_CLI_BUILD_PROJECT }}
+          jf rt build-publish --project ${{ env.JFROG_CLI_BUILD_PROJECT }} "${{ env.JFROG_CLI_BUILD_NAME }}" "${{ env.JFROG_CLI_BUILD_NUMBER }}"
       -
         name: Create Release Bundle
         if: github.ref == 'refs/heads/main'
