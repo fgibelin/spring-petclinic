@@ -33,7 +33,7 @@ jobs:
           cache: maven
       - 
         name: Setup JFrog CLI
-        uses: jfrog/setup-jfrog-cli@v4.1.1
+        uses: jfrog/setup-jfrog-cli@v4.1.0
         env:
           JF_URL: ${{ vars.JF_URL }}
           JF_USER: ${{ secrets.JF_USER }}
