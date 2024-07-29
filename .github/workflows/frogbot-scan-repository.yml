@@ -28,7 +28,7 @@ jobs:
       - uses: jfrog/frogbot@v2
         env:
           JF_CLI_LOG_LEVEL: "DEBUG"
-          JF_URL: ${{ secrets.JF_URL }}
+          JF_URL: ${{ variables.JF_URL }}
           JF_USER: ${{ secrets.JF_USER }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
           JF_PROJECT: "fg"
