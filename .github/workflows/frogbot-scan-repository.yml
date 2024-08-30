@@ -27,7 +27,7 @@ jobs:
           cache: maven
       - uses: jfrog/frogbot@v2
         env:
-          JF_CLI_LOG_LEVEL: "DEBUG"
+          JF_CLI_LOG_LEVEL: "INFO"
           JF_URL: ${{ vars.JF_URL }}
           JF_USER: ${{ secrets.JF_USER }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
