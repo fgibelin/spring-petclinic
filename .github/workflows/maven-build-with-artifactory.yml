@@ -56,7 +56,7 @@ jobs:
       -
         name: Scan Maven package
         run: |
-          jf scan --watches fredericg-dev-watch --licenses --format=json ./target/${{ env.petclinicArtifactName }}-${{ env.petclinicVersion }}.jar
+          jf scan --licenses --format=json ./target/${{ env.petclinicArtifactName }}-${{ env.petclinicVersion }}.jar
       -
         name: Deploy Maven package to Artifactory
         if: github.ref == 'refs/heads/main'
