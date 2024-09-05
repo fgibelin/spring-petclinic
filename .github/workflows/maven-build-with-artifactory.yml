@@ -45,7 +45,11 @@ jobs:
           echo "petclinicArtifactName=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
           echo "petclinicVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
       -
-        name: Run Source Code Audit
+        name: JFrog Curation Audit
+        run: |
+          jf curation-audit
+      -
+        name: Audit Source Code
         run: |
           jf audit --licenses --format=table --mvn=true
       -
