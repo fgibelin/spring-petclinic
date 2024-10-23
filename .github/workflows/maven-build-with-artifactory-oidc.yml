@@ -1,4 +1,4 @@
-name: Build Spring Petclinic with JFrog Artifactory
+name: Build Spring Petclinic with JFrog Artifactory and OIDC
 
 on:
   push:
