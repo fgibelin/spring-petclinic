@@ -20,6 +20,9 @@ permissions:
 jobs:
   create-fix-pull-requests:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ '17' ]
     steps:
       - uses: actions/checkout@v4
 
