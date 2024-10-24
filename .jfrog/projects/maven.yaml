@@ -1,0 +1,11 @@
+version: 1
+type: maven
+resolver:
+    serverId: soleng
+    snapshotRepo: fg-maven
+    releaseRepo: fg-maven
+deployer:
+    serverId: soleng
+    snapshotRepo: fg-maven-dev-local-snapshots
+    releaseRepo: fg-maven-dev-local-releases
+useWrapper: true
