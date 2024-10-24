@@ -1,4 +1,4 @@
-name: Build Spring Petclinic with JFrog Artifactory
+name: Build Spring Petclinic with JFrog Artifactory and OIDC
 
 on:
   push:
@@ -7,6 +7,12 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  actions: read           # for detecting the Github Actions environment
+  id-token: write         # for creating OIDC tokens for signing
+  packages: write         # for uploading attestations
+  contents: read          # read the contents permission
+  security-events: write  # for uploading code scanning
 
 jobs:
   build:
@@ -35,12 +41,11 @@ jobs:
       - 
         name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v4
-        with:
-          version: 2.71.0
         env:
           JF_URL: ${{ vars.JF_URL }}
-          JF_USER: ${{ secrets.JF_USER }}
-          JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+        with:
+          oidc-provider-name: fredericg-github
+          oidc-audience: fredericg-audience
       -
         name: Configure Build
         run: |
