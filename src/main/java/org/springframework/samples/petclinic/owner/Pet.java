@@ -39,6 +39,7 @@ import jakarta.persistence.Table;
  * @author Ken Krebs
  * @author Juergen Hoeller
  * @author Sam Brannen
+ * @author Wick Dynex
  */
 @Entity
 @Table(name = "pets")
@@ -54,7 +55,7 @@ public class Pet extends NamedEntity {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "pet_id")
-	@OrderBy("visit_date ASC")
+	@OrderBy("date ASC")
 	private final Set<Visit> visits = new LinkedHashSet<>();
 
 	public void setBirthDate(LocalDate birthDate) {

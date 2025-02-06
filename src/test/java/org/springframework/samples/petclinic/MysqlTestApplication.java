@@ -36,11 +36,12 @@ public class MysqlTestApplication {
 	@Profile("mysql")
 	@Bean
 	static MySQLContainer<?> container() {
-		return new MySQLContainer<>("mysql:9.0");
+		return new MySQLContainer<>("mysql:9.1");
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(PetClinicApplication.class, "--spring.profiles.active=mysql");
+		SpringApplication.run(PetClinicApplication.class, "--spring.profiles.active=mysql",
+				"--spring.docker.compose.enabled=false");
 	}
 
 }
